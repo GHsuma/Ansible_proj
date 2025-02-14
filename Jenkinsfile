@@ -15,8 +15,8 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh '''
-                sudo apt update
-                sudo apt install -y ansible terraform
+                wsl sudo apt update
+                wsl sudo apt install -y ansible terraform
                 '''
             }
         }
@@ -24,7 +24,7 @@ pipeline {
         stage('Initialize Terraform') {
             steps {
                 dir('terraform') {
-                    sh 'terraform init'
+                    sh 'wsl terraform init'
                 }
             }
         }
@@ -32,7 +32,7 @@ pipeline {
         stage('Apply Terraform') {
             steps {
                 dir('terraform') {
-                    sh 'terraform apply -auto-approve'
+                    sh 'wsl terraform apply -auto-approve'
                 }
             }
         }
@@ -40,7 +40,7 @@ pipeline {
         stage('Run Ansible Playbook') {
             steps {
                 dir('ansible') {
-                    sh 'ansible-playbook -i roles/deploy_static_server/tests/inventory playbook.yaml --ask-become-pass'
+                    sh 'wsl ansible-playbook -i roles/deploy_static_server/tests/inventory playbook.yaml --become --extra-vars "ansible_become_pass=$BECOME_PASS"'
                 }
             }
         }
