@@ -1,14 +1,15 @@
 ---
-- hosts: tag_linuxrp
+- hosts: local
   gather_facts: True
   become: yes
+  
   
   roles:
     - { role: deploy_static_server, when: ansible_system == 'Linux' }
     
-- hosts: tag_ubunturp
+- hosts: local
   gather_facts: True
   become: yes
-  
+ 
   roles:
     - { role: deploy_static_server, when: ansible_system == 'Linux' }

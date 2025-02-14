@@ -1,2 +1,5 @@
 ---
 # defaults file for deploy_apache_centos
+test: "This is a test"
+last: "Borannawar"
+First: "Suma"
