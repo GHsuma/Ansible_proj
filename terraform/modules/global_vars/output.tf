@@ -2,7 +2,6 @@
 output "default_tags" {
     value = {
         Environment = "dev"
-        Owner = "Rinkesh"
         Project = "Ansible"
     }
 }
